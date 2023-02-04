@@ -1,6 +1,6 @@
 var start = document.getElementById('start');
-var reset = document.getElementById('stop');
-var stop = document.getElementById('reset');
+var reset = document.getElementById('reset');
+var stop = document.getElementById('stop');
 
 var workingMinutes = document.getElementById('w_minutes');
 var workingSeconds = document.getElementById('w_seconds');
@@ -20,8 +20,8 @@ start.addEventListener('click', function(){
 
 reset.addEventListener('click', function(){
     workingMinutes.innerText = 25;
-    workingSeconds.innterText = "00"
-    breakSeconds.innerText = 5;
+    workingSeconds.innerText = "00"
+    breakMinutes.innerText = 5;
     breakSeconds.innerText = "00";
     stopInterval()
     startTimer = undefined;
@@ -33,7 +33,7 @@ stop.addEventListener('click', function(){
 })
 
 function timer() {
-    if(workingSeconds.innterText != 0) {
+    if(workingSeconds.innerText != 0) {
         workingSeconds.innerText--;
     } else if(workingMinutes.innerText != 0 && workingSeconds.innerText == 0) {
         workingSeconds.innerText = 59;
@@ -41,7 +41,7 @@ function timer() {
     }
 
     if(workingMinutes.innerText == 0 && workingSeconds.innerText == 0) {
-        if(breakSeconds.innterText != 0) {
+        if(breakSeconds.innerText != 0) {
             breakSeconds.innerText--;
         } else if(breakMinutes.innerText != 0 && breakSeconds.innerText == 0) {
             breakSeconds.innerText = 59;
@@ -55,4 +55,8 @@ function timer() {
         breakSeconds.innerText = 5;
         breakSeconds.innerText = "00";
     }
+}
+
+function stopInterval(){
+    clearInterval(startTimer);
 }
