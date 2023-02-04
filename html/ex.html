@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<TITLE>Program that uses WebGazer.js</TITLE>
+
+<script src="webgazer.js"></script>
+
+<script>
+/*
+ * Simple program that uses WebGazer.js
+ *
+ * Based on https://webgazer.cs.brown.edu/demo.html by Jeff Huang
+ *
+ * Must run on a remote server, and access via https not http. 
+ * Must download webgazer.js from http://webgazer.cs.brown.edu and put it where above 'script src=' statement will find it. 
+ * Can ignore alert box that complains about webGL. 
+ */
+
+function inTarget (data) { 
+    // Weird offset determined empirically, other dimensions match our HTML
+    let xoffset = -250
+    return data && data.x > 400+xoffset && data.x < 400+xoffset+100 && data.y > 300 && data.y < 300+100
+}
+
+/*
+ * Called whenever we get new gaze data
+ * data = object containing an x and y key which are the x and y prediction coordinates (no bounds limiting)
+ * clock = elapsed time in milliseconds since webgazer.begin() was called
+ */
+var lastHit = 0
+function gaze (data, clock) { 
+    const delay = 400 // ms
+
+    if (data==null) return;
+
+    let result = document.getElementById("result")
+    let target = document.getElementById("target1")
+
+    if (inTarget (data)) { 
+        result.textContent = "You win" 
+        result.style.color = "red"
+
+        target.style.color = "red"
+	target.style.background = "black"
+
+	lastHit = clock 
+    }
+    else {
+	// Time delay is just so user will notice the color change
+	if (clock-lastHit > delay) { 
+	    result.textContent = "(not looking at the target)" 
+	    result.style.color = "black"
+
+	    target.style.color = "black"
+	    target.style.background = "white"
+	}
+    }
+}
+
+window.onload = function() {
+    webgazer.setGazeListener(gaze) 
+        .showPredictionPoints(true) /* shows a square every 100 milliseconds where current prediction is */ 
+	.begin() 
+};
+</script>
+</head>
+
+<BODY LANG="en-US" LINK="#0000ff" DIR="LTR">
+    <div>
+        <h1 style="color:#C0C0C0" align="right">
+            Click on a few locations within the screen<br>
+            while looking purposefully at the cursor.<br>
+            Both clicks and cursor movements<br>
+            make the predictions more accurate. 
+        </h1>
+    </div>
+
+    <div id="result" style="position:absolute; right:400px; top:450px">
+          (not looking at the target)
+    </div>
+
+    <div id="target1" style="position:absolute; border-style:solid; border-color:red; right:400px; top:300px; height:100px; width:100px">
+	<h2>Try me!</h2>
+    </div>
+</BODY>
+</HTML>
