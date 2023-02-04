@@ -1,5 +1,4 @@
- /* WebGazer.js library */
-<script src="webgazer.js" type="text/javascript" ></script>
+
 
 /*!
  * 
