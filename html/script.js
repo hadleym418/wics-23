@@ -1,6 +1,5 @@
 var start = document.getElementById('start');
 var reset = document.getElementById('reset');
-var stop = document.getElementById('stop');
 
 var workingMinutes = document.getElementById('w_minutes');
 var workingSeconds = document.getElementById('w_seconds');
@@ -14,7 +13,8 @@ start.addEventListener('click', function(){
     if(startTimer === undefined) {
         startTimer = setInterval(timer, 1000)
     } else {
-        alert("Timer is already running");
+        stopInterval()
+        startTimer = undefined;
     }
 })
 
@@ -23,11 +23,6 @@ reset.addEventListener('click', function(){
     workingSeconds.innerText = "00"
     breakMinutes.innerText = 5;
     breakSeconds.innerText = "00";
-    stopInterval()
-    startTimer = undefined;
-})
-
-stop.addEventListener('click', function(){
     stopInterval()
     startTimer = undefined;
 })
