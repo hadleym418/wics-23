@@ -4,6 +4,21 @@ webgazer.setGazeListener(function(data, elapsedTime) {
 	}
 	var xprediction = data.x; //these x coordinates are relative to the viewport
 	var yprediction = data.y; //these y coordinates are relative to the viewport
-	console.log(xprediction, yprediction); //elapsed time is based on time since begin was called
+	let alarm = new Audio('../assets/buzz_sound.mp3');
+	var start = Date.now();
+	for(var i = 0; i < 500; i++) {
+		console.log(Date.now()-start);
+	}
+	// if((Date.now() - start) > 120000) {
+	// 	alarm.play();
+	// 	// if(xprediction > 1300 || xprediction < 100 || yprediction > 300 || yprediction < -600) {
+	// 	// 	// var timerStart = Date.now();
+	// 	// 	// if((Date.now() - timerStart) > 2000) {
+	// 	// 		alarm.play();
+	// 	// 		// timerStart = Date.now();
+	// 	// 	// }
+	// 	// }
+	// }
+	// console.log(xprediction, yprediction); //elapsed time is based on time since begin was called
 }).begin();
 		
