@@ -9,7 +9,7 @@ body{
     height: 100vh;
     background: #066acd;
 }
-.container1{
+#container1{
     width: 40%;
     top: 50%;
     left: 50%;
