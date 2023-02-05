@@ -6,9 +6,8 @@ webgazer.setGazeListener(function(data, elapsedTime) {
 	var yprediction = data.y; //these y coordinates are relative to the viewport
 	let alarm = new Audio('../assets/buzz_sound.mp3');
 	var start = Date.now();
-	for(var i = 0; i < 500; i++) {
-		console.log(Date.now()-start);
-	}
+	console.log(start);
+	console.log(Date.now);
 	// if((Date.now() - start) > 120000) {
 	// 	alarm.play();
 	// 	// if(xprediction > 1300 || xprediction < 100 || yprediction > 300 || yprediction < -600) {
