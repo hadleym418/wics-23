@@ -1,24 +1,15 @@
+let xprediction = 0;
+let yprediction = 0;
+let alarm = new Audio('../assets/buzz_sound.mp3');
 webgazer.setGazeListener(function(data, elapsedTime) {
 	if (data == null) {
 		return;
 	}
-	var xprediction = data.x; //these x coordinates are relative to the viewport
-	var yprediction = data.y; //these y coordinates are relative to the viewport
-	let alarm = new Audio('../assets/buzz_sound.mp3');
-	var start = Date.now();
-	for(var i = 0; i < 500; i++) {
-		console.log(Date.now()-start);
-	}
-	// if((Date.now() - start) > 120000) {
-	// 	alarm.play();
-	// 	// if(xprediction > 1300 || xprediction < 100 || yprediction > 300 || yprediction < -600) {
-	// 	// 	// var timerStart = Date.now();
-	// 	// 	// if((Date.now() - timerStart) > 2000) {
-	// 	// 		alarm.play();
-	// 	// 		// timerStart = Date.now();
-	// 	// 	// }
-	// 	// }
-	// }
-	// console.log(xprediction, yprediction); //elapsed time is based on time since begin was called
+	xprediction = data.x; //these x coordinates are relative to the viewport
+	yprediction = data.y; //these y coordinates are relative to the viewport
 }).begin();
-		
+
+if((window.noise) && (xprediction < 100 || xprediction > 1200 || yprediction > 250 || yprediction < 50)) {
+	console.log("Space");
+	alarm.play();
+}
