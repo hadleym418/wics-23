@@ -18,6 +18,7 @@ start.addEventListener('click', function(){
     }
 })
 
+
 reset.addEventListener('click', function(){
     workingMinutes.innerText = 25;
     workingSeconds.innerText = "00"

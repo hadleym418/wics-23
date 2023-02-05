@@ -18,7 +18,7 @@ window.onload=function(){
 
 setInterval(function(){ 
     if(noise) {
-        if(xprediction > 1300 || xprediction < 300 || yprediction < 100 || yprediction > 300) {
+        if(xprediction > 1500 || xprediction < 300 || yprediction < 100 || yprediction > 400) {
             alarm.play();
         }
     }
